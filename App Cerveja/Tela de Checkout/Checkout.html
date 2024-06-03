@@ -1,0 +1,39 @@
+import React from 'react';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+
+const CheckoutScreen = ({ navigation }) => {
+  return (
+    <View style={styles.container}>
+      <TextInput style={styles.input} placeholder="Endereço" />
+      <TextInput style={styles.input} placeholder="Cidade" />
+      <TextInput style={styles.input} placeholder="CEP" keyboardType="numeric" />
+      <Text style={styles.summary}>Resumo do Pedido</Text>
+      {/* Resumo do pedido com itens e preços */}
+      <Button title="Confirmar Pedido" onPress={() => {/* Lógica de confirmação */}} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: '#fff',
+  },
+  input: {
+    width: '100%',
+    padding: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+  },
+  summary: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 20,
+  },
+});
+
+export default CheckoutScreen;

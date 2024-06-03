@@ -1,0 +1,64 @@
+import React from 'react';
+import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
+
+const cartData = [
+  { id: '1', name: 'Cerveja A', price: 'R$10,00', quantity: 1 },
+  { id: '2', name: 'Cerveja B', price: 'R$12,00', quantity: 2 },
+  // Mais itens aqui...
+];
+
+const CartScreen = ({ navigation }) => {
+  const total = cartData.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={cartData}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.cartItem}>
+            <Text style={styles.productName}>{item.name}</Text>
+            <Text style={styles.productPrice}>{item.price}</Text>
+            <Text style={styles.productQuantity}>Quantidade: {item.quantity}</Text>
+          </View>
+        )}
+      />
+      <Text style={styles.total}>Total: R${total}</Text>
+      <Button title="Finalizar Pedido" onPress={() => navigation.navigate('CheckoutScreen')} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: '#fff',
+  },
+  cartItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  productName: {
+    fontSize: 16,
+  },
+  productPrice: {
+    fontSize: 16,
+    color: 'green',
+  },
+  productQuantity: {
+    fontSize: 16,
+    color: 'gray',
+  },
+  total: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 20,
+  },
+});
+
+export default CartScreen;
